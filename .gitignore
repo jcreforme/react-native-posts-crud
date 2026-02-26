@@ -1,54 +1,68 @@
 # Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
 
 # dependencies
+node_modules/
 **/node_modules/
 
 # Expo
+.expo/
 **/.expo/
+dist/
 **/dist/
+web-build/
 **/web-build/
+expo-env.d.ts
 **/expo-env.d.ts
 
 # Native
+.kotlin/
 **/.kotlin/
-**/*.orig.*
-**/*.jks
-**/*.p8
-**/*.p12
-**/*.key
-**/*.mobileprovision
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
 
 # Metro
+.metro-health-check*
 **/.metro-health-check*
 
 # debug
+npm-debug.*
 **/npm-debug.*
+yarn-debug.*
 **/yarn-debug.*
+yarn-error.*
 **/yarn-error.*
-**/*.log
+*.log
 
 # macOS
 .DS_Store
-**/*.pem
+*.pem
 
 # local env files
+.env*.local
 **/.env*.local
 
 # typescript
-**/*.tsbuildinfo
+*.tsbuildinfo
 
 # app-example
-**/app-example
+app-example/
+**/app-example/
 
 # generated native folders
-**/ios
-**/android
+ios/
+**/ios/
+android/
+**/android/
 
 # Backend specific
 # Uncomment the line below if you don't want to commit posts data
 # dummy-backend/data/posts.json
 
-# IDE
+# IDE - comment out if you want to keep VSCode settings
 .vscode/
 .idea/
 *.swp
