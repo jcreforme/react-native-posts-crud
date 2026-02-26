@@ -4,7 +4,7 @@ import { ThemedText } from './themed-text';
 import { ThemedView } from './themed-view';
 import { Modal, TextInput, TouchableOpacity, Pressable } from 'react-native';
 import DraggableFlatList, { RenderItemParams, ScaleDecorator } from 'react-native-draggable-flatlist';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Constants from 'expo-constants';
 
 interface PostFormModalProps {
   visible: boolean;
@@ -118,7 +118,21 @@ interface Post {
   author: string;
 }
 
-const API_URL = 'http://192.168.20.114:8080/posts';
+const determineApiUrl = () => {
+  // Check for environment variable first
+  const envUrl = process.env.EXPO_PUBLIC_API_URL;
+  if (envUrl) return envUrl;
+
+  // Fallback: auto-detect for development
+  if (Platform.OS === 'web') {
+    return 'http://localhost:8080/posts';
+  }
+  
+  const devHost = Constants.expoConfig?.hostUri?.split(':')[0];
+  return devHost ? `http://${devHost}:8080/posts` : 'http://localhost:8080/posts';
+};
+
+const API_URL = determineApiUrl();
 
 export function PostsList() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -255,7 +269,7 @@ export function PostsList() {
   }
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <>
       <PostFormModal
         visible={modalVisible}
         post={selectedPost}
@@ -310,7 +324,7 @@ export function PostsList() {
               </ThemedView>
             </ScaleDecorator>
           )}
-          containerStyle={styles.listContainer}
+          contentContainerStyle={styles.listContainer}
           ListEmptyComponent={
             <View style={styles.centerContainer}>
               <ThemedText>No posts available</ThemedText>
@@ -318,7 +332,7 @@ export function PostsList() {
           }
         />
       </View>
-    </GestureHandlerRootView>
+    </>
   );
 }
 

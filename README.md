@@ -48,3 +48,98 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+# React Native Posts CRUD App 📱
+
+A full-stack React Native application built with Expo for managing posts with CRUD operations and drag-and-drop reordering.
+
+## 📦 Quick Start
+
+### 1. Clone and Install
+
+```bash
+git clone https://github.com/jcreforme/react-native-posts-crud.git
+cd react-native-posts-crud
+
+# Install frontend dependencies
+cd MyApp
+npm install
+cd ..
+
+# Install backend dependencies
+cd dummy-backend
+npm install
+cd ..
+```
+
+### 2. Configure Environment
+
+```bash
+# Copy environment template
+cp .env.example .env
+
+# Edit .env with your local IP address
+# Windows: ipconfig
+# Mac/Linux: ifconfig
+```
+
+Update `LOCAL_IP` in `.env` with your computer's IP address.
+
+### 3. Start the Application
+
+**Terminal 1 - Backend:**
+```bash
+cd dummy-backend
+node app.js
+```
+
+**Terminal 2 - Frontend:**
+```bash
+cd MyApp
+npx expo start
+```
+
+## 🚀 Running on Mobile
+
+1. Install **Expo Go** on your phone
+2. Ensure phone and computer are on same Wi-Fi
+3. Scan QR code from terminal
+4. App will auto-connect to backend
+
+No manual IP configuration needed - it auto-detects!
+
+## 📁 Project Structure
+
+```
+├── MyApp/              # Expo frontend
+├── dummy-backend/      # Express backend
+├── .env.example        # Environment template
+└── README.md          # This file
+```
+
+## 🔧 Environment Variables
+
+Create `.env` file from `.env.example`:
+
+```bash
+LOCAL_IP=192.168.20.114          # Your computer's IP
+BACKEND_PORT=8080                # Backend port
+EXPO_PUBLIC_API_URL=http://192.168.20.114:8080/posts
+```
+
+## ✨ Features
+
+- Create, edit, delete posts
+- Drag-and-drop reordering (mobile)
+- Cross-platform (iOS, Android, Web)
+- Auto-detecting API URL
+- Persistent storage
+
+## 📚 Learn More
+
+- [Expo Documentation](https://docs.expo.dev/)
+- [React Native Docs](https://reactnative.dev/)
+
+## 📄 License
+
+Educational purposes

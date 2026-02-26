@@ -71,3 +71,12 @@ android/
 
 # OS
 Thumbs.db
+
+# Environment variables
+.env
+.env.local
+**/.env
+**/.env.local
+
+# Keep example file
+!.env.example
