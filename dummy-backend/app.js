@@ -1,15 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
 
 const { getStoredPosts, storePosts } = require('./data/posts');
 
 const app = express();
+const PORT = process.env.BACKEND_PORT || 8080;
+const HOST = '0.0.0.0';
 
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
-  // Attach CORS headers
-  // Required when using a detached backend (that runs on a different domain)
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -81,7 +83,9 @@ app.put('/posts', async (req, res) => {
   res.json({ message: 'Posts order updated.', posts: postsArray });
 });
 
-app.listen(8080, '0.0.0.0', () => {
-  console.log('Server running on http://0.0.0.0:8080');
-  console.log('Access from network: http://192.168.20.114:8080');
+app.listen(PORT, HOST, () => {
+  const localIP = process.env.LOCAL_IP || 'localhost';
+  console.log(`Server running on:`);
+  console.log(`  Local:   http://localhost:${PORT}`);
+  console.log(`  Network: http://${localIP}:${PORT}`);
 });
